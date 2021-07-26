@@ -1,0 +1,43 @@
+.sectionContainer {
+    padding:40px 80px;
+
+    h1{
+        font-size:30px;
+        text-shadow: 0 0 10px red;
+    }
+
+    h2{
+        font-size:24px
+    }
+
+    h3{
+        font-size:18px
+    }
+    
+    .myIcon {
+        height:100px;
+        width:100px;
+        border-radius:50px
+    }
+
+    button{
+        padding:5px 8px;
+        font-size:18px;
+        font-weight:bold;
+        border-radius:3px;
+        transition:0.3s
+    }
+    button:hover{
+        cursor: pointer;
+        color:white;
+        background:none;
+        border:2px solid white;
+    }
+
+}
+
+@media (max-width: 947px){
+    .sectionContainer {
+        padding:30px;
+    }
+}
