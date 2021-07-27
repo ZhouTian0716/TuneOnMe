@@ -4,11 +4,11 @@ import "./reset.css"
 import "./App.scss"
 
 
-function App() {
+function App(props) {
   return (
     <div className="app">
       <MenuBar /> 
-      <MainContainer /> 
+      <MainContainer tracks={props.tracks}/> 
     </div>
   );
 }

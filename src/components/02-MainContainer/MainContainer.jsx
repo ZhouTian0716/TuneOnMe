@@ -1,13 +1,15 @@
 // import React, { useState } from 'react';
-import Searchbar from "../03-SearchBar/SearchBar.jsx";
+// import Searchbar from "../03-SearchBar/SearchBar.jsx";
+import AudioPlayer from "../05-Player/AudioPlayer.jsx";
 // import AboutMe from "../aboutMe/AboutMe.jsx";
 // import Contact from "../contact/Contact.jsx";
 // import Portfolio from "../portfolio/Portfolio.jsx";
 // import Resume from "../resume/Resume.jsx";
 import "./MainContainer.scss"
 
-export default function MainContainer() {
+export default function MainContainer(props) {
   // const [currentPage, setCurrentPage] = useState('AboutMe');
+
 
   // const renderPage = () => {
   //   if (currentPage === 'AboutMe') {
@@ -26,7 +28,8 @@ export default function MainContainer() {
 
   return (
     <div className="mainContainer">
-      <h1>dwfdfsdfsdf</h1>
+      
+      <AudioPlayer tracks={props.tracks}/>
       
       
     </div>
