@@ -10,6 +10,7 @@ function App(props) {
       <MenuBar /> 
       <MainContainer tracks={props.tracks}/> 
     </div>
+    
   );
 }
 

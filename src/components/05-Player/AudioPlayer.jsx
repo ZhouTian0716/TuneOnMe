@@ -116,6 +116,8 @@ const AudioPlayer = ({ tracks }) => {
       return `${minutes}:${returnedSeconds}`;
     }
 
+   
+
   
     return (
       <div className="audio-player">
@@ -154,8 +156,12 @@ const AudioPlayer = ({ tracks }) => {
           />
 
           <div className="track-time">
-
               <h5>{calculateTime(audioRef.current.currentTime)}/{calculateTime(duration)}</h5>
+              
+              <output id="volume-output">100</output>
+              <button><i class="fas fa-volume-off"></i></button>
+              <input type="range" id="volume-slider" max="100" value="50"></input>
+              <button><i class="fas fa-volume-down"></i></button>
 
           </div>
           
