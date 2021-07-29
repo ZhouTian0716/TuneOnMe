@@ -10,6 +10,7 @@ const AudioPlayer = ({ tracks }) => {
     const [trackIndex, setTrackIndex] = useState(0);
     const [trackProgress, setTrackProgress] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
+
   
     // Destructure for conciseness
     const { title, artist, color, image, audioSrc } = tracks[trackIndex];
@@ -106,24 +107,19 @@ const AudioPlayer = ({ tracks }) => {
         clearInterval(intervalRef.current);
       };
     }, []);
+
+
+    const calculateTime = (secs) => {
+      const minutes = Math.floor(secs / 60);
+      const seconds = Math.floor(secs % 60);
+      const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+      return `${minutes}:${returnedSeconds}`;
+    }
+
   
     return (
       <div className="audio-player">
-        <div className="track-info">
-          <img
-            className="artwork"
-            src={image}
-            alt={`track artwork for ${title} by ${artist}`}
-          />
-          <h2 className="title">{title}</h2>
-          <h3 className="artist">{artist}</h3>
-          <AudioControls
-            isPlaying={isPlaying}
-            onPrevClick={toPrevTrack}
-            onNextClick={toNextTrack}
-            onPlayPauseClick={setIsPlaying}
-          />
-          <input
+        <input
             type="range"
             value={trackProgress}
             step="1"
@@ -134,7 +130,35 @@ const AudioPlayer = ({ tracks }) => {
             onMouseUp={onScrubEnd}
             onKeyUp={onScrubEnd}
             style={{ background: trackStyling }}
+        />
+        <div className="audio-player-body">
+          <div className="track-info">
+            <img
+            className="artwork"
+            src={image}
+            alt={`track artwork for ${title} by ${artist}`}
+            />
+            <div>
+              <h4 className="title">{title}</h4>
+              <h4 className="artist">{artist}</h4>
+              <h4 className="artist">dummy</h4>
+            </div>
+            
+          </div>
+          
+          <AudioControls
+            isPlaying={isPlaying}
+            onPrevClick={toPrevTrack}
+            onNextClick={toNextTrack}
+            onPlayPauseClick={setIsPlaying}
           />
+
+          <div className="track-time">
+
+              <h5>{calculateTime(audioRef.current.currentTime)}/{calculateTime(duration)}</h5>
+
+          </div>
+          
         </div>
         <Backdrop
           trackIndex={trackIndex}

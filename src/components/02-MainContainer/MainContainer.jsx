@@ -1,10 +1,7 @@
 // import React, { useState } from 'react';
-// import Searchbar from "../03-SearchBar/SearchBar.jsx";
+import SearchBar from "../03-SearchBar/SearchBar.jsx";
+import Favourites from "../04-DisplayContainer/Favourites.jsx";
 import AudioPlayer from "../05-Player/AudioPlayer.jsx";
-// import AboutMe from "../aboutMe/AboutMe.jsx";
-// import Contact from "../contact/Contact.jsx";
-// import Portfolio from "../portfolio/Portfolio.jsx";
-// import Resume from "../resume/Resume.jsx";
 import "./MainContainer.scss"
 
 export default function MainContainer(props) {
@@ -28,7 +25,8 @@ export default function MainContainer(props) {
 
   return (
     <div className="mainContainer">
-      
+      <SearchBar />
+      <Favourites />
       <AudioPlayer tracks={props.tracks}/>
       
       

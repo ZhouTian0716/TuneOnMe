@@ -5,7 +5,7 @@ const Backdrop = ({ activeColor, trackIndex, isPlaying }) => {
     document.documentElement.style.setProperty("--active-color", activeColor);
   }, [trackIndex, activeColor]);
 
-  return <div className={`color-backdrop ${isPlaying ? "playing" : "idle"}`} />;
+  return <div className={`color-backdrop ${isPlaying ? "playing" : "idle"}`} >dssdfsdffdf</div>;
 };
 
 export default Backdrop;
