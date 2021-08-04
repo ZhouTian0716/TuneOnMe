@@ -9,7 +9,7 @@ export const AUTH_URL =
 export default function Login() {
     return (
         <div>
-            <a href={AUTH_URL} id="signIn"><i class="fas fa-sign-in-alt">LOGIN with SPOTIFY</i></a>
+            <a href={AUTH_URL} id="signIn"><i class="fas fa-sign-in-alt">LOGIN with SPOTIFY first</i></a>
         </div>
     )
 }
