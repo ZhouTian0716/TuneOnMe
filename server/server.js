@@ -1,20 +1,19 @@
 require("dotenv").config()
-const express = require("express")
-const db = require('./config/connection');
+const express = require("express");
+const path = require('path');
 const routes = require('./routes');
-
-// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-const cors = require("cors")
-const bodyParser = require("body-parser")
-const SpotifyWebApi = require("spotify-web-api-node")
-// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const cors = require("cors")
+const bodyParser = require("body-parser")
+const SpotifyWebApi = require("spotify-web-api-node")
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -67,16 +66,11 @@ app.post("/login", (req, res) => {
     })
 })
 
-
 // if we're in production, serve client/build as static assets
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 app.use(routes);
 
-db.once('open', () => {
-  app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-});
-
-// app.listen(3001)
+app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`))
