@@ -5,7 +5,7 @@ import MainContainer from '../03-MainContainer/MainContainer.jsx';
 import SpotifyWebApi from "spotify-web-api-node"
 
 const spotifyApi = new SpotifyWebApi({
-    clientId: "e66018a245b7495e89b7460d9ad2b7b6",
+    clientId: "a64546f1c27541cca025fc19bce260c3",
 })
 
 
@@ -13,11 +13,21 @@ export default function Home({code}) {
     const accessToken = useAuth(code);
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
-    // console.log(searchResults)
+    
 
     useEffect(() => {
         if (!accessToken) return
         spotifyApi.setAccessToken(accessToken)
+    }, [accessToken])
+
+
+    useEffect(() => {
+      if (!accessToken) return
+      spotifyApi.getMe().then(function(data) {
+        console.log('Some information about the authenticated user', data.body);
+      }, function(err) {
+      console.log('Something went wrong!', err);
+      });
     }, [accessToken])
 
     //Search Functionality
@@ -60,10 +70,11 @@ export default function Home({code}) {
         <div className="app">
             <MenuBar />
             <MainContainer
-                search={search}
-                setSearch={setSearch}
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
+              accessToken={accessToken}
+              search={search}
+              setSearch={setSearch}
+              searchResults={searchResults}
+              setSearchResults={setSearchResults}
             />
         </div>
     )

@@ -1,20 +1,28 @@
-
+import { useState, useEffect } from "react"
 import SearchBar from '../04-SearchBar/SearchBar.jsx';
 import SearchResults from '../05-DisplayContainer/SearchResults.jsx';
-import AudioPlayer from '../06-Player/AudioPlayer.jsx';
+import CustomPlayer from '../06-Player/CustomPlayer.jsx';
 import "./MainContainer.scss"
 
 
-export default function MainContainer(props) {
+export default function MainContainer({accessToken, search, setSearch, searchResults, setSearchResults}) {
+  const [playingTrack, setPlayingTrack] = useState()
+  // const [lyrics, setLyrics] = useState("")
 
+  function chooseTrack(track) {
+    setPlayingTrack(track)
+  }
 
   return (
     <div className="mainContainer">
-      <SearchBar search={props.search} setSearch={props.setSearch}/>
+      <SearchBar search={search} setSearch={setSearch}/>
 
-      <SearchResults searchResults={props.searchResults} setSearchResults={props.setSearchResults}/>
+      
 
-      <AudioPlayer />
+      <SearchResults searchResults={searchResults} setSearchResults={setSearchResults} chooseTrack={chooseTrack}/>
+
+
+      <CustomPlayer accessToken={accessToken} trackUri={playingTrack?.uri} />
       
     </div>
   );
